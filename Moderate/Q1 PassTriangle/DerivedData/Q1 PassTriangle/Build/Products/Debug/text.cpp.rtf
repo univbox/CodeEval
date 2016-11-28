@@ -1,0 +1,87 @@
+{\rtf1\ansi\ansicpg949\cocoartf1504\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset129 AppleSDGothicNeo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;\csgray\c100000;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 /* Sample code to read in test cases:\
+#include <iostream>\
+#include <fstream>\
+using namespace std;\
+int main(int argc, char *argv[]) \{\
+    ifstream stream(argv[1]);\
+    string line;\
+    while (getline(stream, line)) \{\
+        // Do something with the line\
+    \}\
+    return 0;\
+\} */\
+\
+//\
+//  main.cpp\
+//  Q1 PassTriangle\
+//\
+//  Created by HeoBin on 2016. 11. 8..\
+//  Copyright \'a9 2016
+\f1 \'b3\'e2
+\f0  bin. All rights reserved.\
+//\
+\
+#include <iostream>\
+#include <sstream>\
+#include <vector>\
+#include <fstream>\
+using namespace std;\
+\
+int main(int argc, const char * argv[]) \{\
+    ifstream m_InFile(argv[1]);\
+    string line;\
+\
+    int number=0;\
+    int sum = 0;\
+    int repeat=0;\
+    int target=0;\
+    int index = 0;\
+    int x,y;\
+    \
+    while (getline(m_InFile, line))\
+    \{\
+        istringstream linestream(line);\
+        index = 0;\
+        while(index <= target + 1)\
+        \{\
+            linestream >> number;\
+            \
+            if(repeat == 0)\
+            \{\
+                if(index == target-1) x = number;\
+                else if(index == target) y = number;\
+            \}\
+            else\
+            \{\
+                if(index == target) x = number;\
+                else if(index == target+1) y = number;\
+            \}\
+            index++;\
+        \}\
+        \
+        if(x>y) number = x;\
+        else if(x<y) number = y;\
+        else number = x;\
+        cout<<number<<endl;\
+        \
+        sum += number;\
+        //cout<<"SUM : "<<sum<<" NUMBER: "<<number<<endl;\
+        repeat++;\
+        \
+        if(repeat == 2)\
+        \{\
+            repeat = 0;\
+            target ++;\
+        \}\
+    \}\
+    cout<<sum<<endl;\
+    return 0;\
+    \
+\}}

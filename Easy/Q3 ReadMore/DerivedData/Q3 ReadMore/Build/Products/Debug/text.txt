@@ -1,0 +1,70 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+bool Exceed55(string line)
+{
+    int num = 0;
+    for(string::iterator i = line.begin(); i != line.end(); i++)
+    {
+        num++;
+        if(num > 55) return true;
+    }
+    return false;
+}
+
+void OutExceed(string line)
+{
+    char in_char;
+    int num=0;
+    for(string::iterator i = line.begin(); i != line.end(); i++)
+    {
+        in_char = *i;
+        if(num < 36 || in_char != ' ')
+        {
+                cout<<in_char;
+                num++;
+                if(num == 40) {cout<<"... <Read More>"<<endl;i = line.end()-1;}
+        }
+        else
+        {
+            cout<<"... <Read More>"<<endl;
+            i = line.end()-1;
+        }
+    }
+}
+
+void OutStandard(string line)
+{
+    char in_char;
+    for(string::iterator i = line.begin(); i != line.end(); i++)
+    {
+        in_char = *i;
+        cout<<in_char;
+    }
+    cout<<endl;
+}
+
+int main(int argc, char *argv[]) 
+{
+    ifstream m_InFile(argv[1]);
+    string line;
+    bool is_Exceed;
+    
+    while(getline(m_InFile, line))
+    {
+        is_Exceed = Exceed55(line);
+        if(is_Exceed)
+        {
+            OutExceed(line);
+        }
+        else
+        {
+            OutStandard(line);
+        }
+    }
+
+    return 0;
+}
+
