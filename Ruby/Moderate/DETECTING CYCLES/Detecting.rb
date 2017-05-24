@@ -38,7 +38,6 @@ end
 File.open('in.txt').each_line do |line|
   line = line.chomp.split(" ").reverse
   floyd(line,0)
-  #''
   puts line[@gmu..(@lambda+@gmu-1)].reverse.join(" ")
 
 end

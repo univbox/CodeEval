@@ -1,6 +1,7 @@
 @lambda =0
 @gmu = 0
 
+
 def floyd(line,x0)
   tor_index = x0
   har_index = x0
@@ -36,9 +37,9 @@ end
 
 
 File.open('in.txt').each_line do |line|
-  line = line.chomp.split(" ").reverse
+  line = line.chomp
+  line << line << line
   floyd(line,0)
-  #''
-  puts line[@gmu..(@lambda+@gmu-1)].reverse.join(" ")
 
+  puts line[@gmu..(@lambda+@gmu-1)].length
 end
